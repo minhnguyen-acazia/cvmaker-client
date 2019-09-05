@@ -4,9 +4,9 @@ import { Button } from '../button/button'
 import { Editor } from 'react-draft-wysiwyg';
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css'
 
-export function FormWorkExperience({ title }) {
+const FormInstance = ({ idx, deleteEntry }) => {
   return (
-    <FormBlueprint title={title}>
+    <div className='set'>
       <div className='field'>
         <label>Job title</label>
         <input maxLength='100' type='text' name='jobTitle' />
@@ -28,13 +28,20 @@ export function FormWorkExperience({ title }) {
       <div className='field max-width'>
         <label>Other information</label>
         <Editor wrapperClassName='wysiwyg-wrapper' editorClassName='wysiwyg-editor' />
-        <span class='info'>Optional details such as job responsibilities, achievements etc.</span>
+        <span className='info'>Optional details such as job responsibilities, achievements etc.</span>
       </div>
-      <Button type='delete' text='Delete' />
+      <Button type='delete' text='Delete' onClick={() => deleteEntry('Work experience', idx)} />
+    </div>
+  )
+}
 
-      <hr />
-
-      <Button type='add' text='Add entry' />
+export function FormWorkExperience({ title, data, addEntry, deleteEntry }) {
+  return (
+    <FormBlueprint title={title}>
+      <div className='sets'>
+        {data.map((n, idx) => <FormInstance data={n} key={idx} idx={idx} deleteEntry={deleteEntry} />)}
+      </div>
+      <Button type='add' text='Add entry' onClick={() => addEntry('Work experience')} />
     </FormBlueprint>
   )
 }

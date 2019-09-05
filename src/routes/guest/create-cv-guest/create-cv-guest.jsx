@@ -10,14 +10,15 @@ import { FormWorkExperience } from '../../../components/forms/form-work-experien
 
 export class CreateCVGuest extends Component {
   state = {
-    options: [{
+    types: [{
       name: 'Basic information',
       original: true,
       selected: true
     }, {
       name: 'Work experience',
       original: true,
-      selected: false
+      selected: false,
+      data: [{}]
     }, {
       name: 'Qualifications',
       original: true,
@@ -40,7 +41,7 @@ export class CreateCVGuest extends Component {
   attemptAddSection = () => {
     modals.open({
       content: <AddSection onConfirm={(section, special) => {
-        this.setState({ options: [...this.state.options, {
+        this.setState({ types: [...this.state.types, {
           name: section,
           original: false,
           special: special
@@ -51,17 +52,35 @@ export class CreateCVGuest extends Component {
     })
   }
 
-  renderSortableOptions = (options) => {
+  addEntry = (type) => {
+    let { types } = this.state
+    types = types.map(n => {
+      if (n.name === type) n.data.push({})
+      return n
+    })
+    this.setState({ types })
+  }
+
+  deleteEntry = (type, idx) => {
+    let { types } = this.state
+    types = types.map(n => {
+      if (n.name === type) n.data.splice(idx, 1)
+      return n
+    })
+    this.setState({ types })
+  }
+
+  renderSortableOptions = (types) => {
     return (
       <ul className='sortable-options'>
-        {options.map((option, idx) => (
-          <li className={classnames('option', option.selected && 'selected')} key={idx} onClick={() => {
-            this.setState({options: options.map((innerOption, innerIdx) => {
-              innerOption.selected = innerIdx === idx
-              return innerOption
+        {types.map((type, idx) => (
+          <li className={classnames('option', type.selected && 'selected')} key={idx} onClick={() => {
+            this.setState({types: types.map((innerType, innerIdx) => {
+              innerType.selected = innerIdx === idx
+              return innerType
             })})
           }}>
-            {option.name}
+            {type.name}
           </li>
         ))}
       </ul>
@@ -69,21 +88,21 @@ export class CreateCVGuest extends Component {
   }
 
   renderForm = () => {
-    let { options } = this.state
-    options = options.filter(option => option.selected)
-    const { name } = options[0]
+    let { types } = this.state
+    types = types.filter(option => option.selected)
+    const { name, data } = types[0]
     switch (name) {
       case ('Basic information'):
         return <FormBasicInformation title={name} />
       case 'Work experience':
-        return <FormWorkExperience title={name} />
+        return <FormWorkExperience title={name} data={data} addEntry={this.addEntry} deleteEntry={this.deleteEntry} />
       default:
         return
     }
   }
 
   render() {
-    const { options } = this.state
+    const { types } = this.state
 
     return (
       <GuestLayout content={(
@@ -100,7 +119,7 @@ export class CreateCVGuest extends Component {
           </div>
           <div className='main-form'>
             <div className='options'>
-              {this.renderSortableOptions(options)}
+              {this.renderSortableOptions(types)}
               <Button type='add' className='add' text='Add a new section' onClick={this.attemptAddSection} />
               <p className='msg'>* Click and drag section names in the above list to reorder sections in your CV.</p>
               <p className='msg'>* If you leave the fields in a section empty, the section will not appear in your CV.</p>
