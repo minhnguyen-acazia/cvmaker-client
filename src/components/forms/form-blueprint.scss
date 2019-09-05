@@ -61,14 +61,16 @@
       font-size: 11px;
       color: #888;
     }
+  }
 
-    .wysiwyg-wrapper {
-      border: 1px solid #ccc;
-    }
+  .wysiwyg-wrapper {
+    border: 1px solid #ccc;
+    margin: 0 5px;
+  }
 
-    .wysiwyg-editor {
-      min-height: 223px; 
-    }
+  .wysiwyg-editor {
+    min-height: 223px;
+    padding: 0 8px;
   }
 
   hr {

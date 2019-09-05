@@ -7,6 +7,7 @@ import { modals } from '../../../components/modals/modal-registry'
 import { AddSection } from '../../../components/modals/add-section/add-section'
 import { FormBasicInformation } from '../../../components/forms/form-basic-information'
 import { FormWorkExperience } from '../../../components/forms/form-work-experience'
+import { FormNewSection } from '../../../components/forms/form-new-section'
 
 export class CreateCVGuest extends Component {
   state = {
@@ -63,10 +64,14 @@ export class CreateCVGuest extends Component {
 
   deleteEntry = (type, idx) => {
     let { types } = this.state
-    types = types.map(n => {
-      if (n.name === type) n.data.splice(idx, 1)
-      return n
-    })
+    if (idx >= 0) {
+      types = types.map(n => {
+        if (n.name === type) n.data.splice(idx, 1)
+        return n
+      })
+    } else {
+      types = types.filter(n => n.name !== type)
+    }
     this.setState({ types })
   }
 
@@ -90,14 +95,14 @@ export class CreateCVGuest extends Component {
   renderForm = () => {
     let { types } = this.state
     types = types.filter(option => option.selected)
-    const { name, data } = types[0]
+    const { name, data } = types.length > 0 ? types[0] : this.state.types[0]
     switch (name) {
       case ('Basic information'):
         return <FormBasicInformation title={name} />
       case 'Work experience':
         return <FormWorkExperience title={name} data={data} addEntry={this.addEntry} deleteEntry={this.deleteEntry} />
       default:
-        return
+        return <FormNewSection title={name} deleteEntry={this.deleteEntry} />
     }
   }
 
