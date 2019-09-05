@@ -1,0 +1,18 @@
+.button {
+  width: fit-content;
+  display: flex;
+  background: #f3f3f3 url(../../assets/images/bg_button.png) repeat-x bottom left;
+  padding: 2px 10px 3px 10px;
+  font-size: 11px;
+  font-weight: bold;
+  color: #666;
+  text-shadow: 1px 1px #ddd;
+  cursor: pointer;
+  border: 1px solid #ccc;
+  border-radius: 15px;
+  overflow: hidden;
+
+  .icon + span {
+    margin-left: 3px;
+  }
+}

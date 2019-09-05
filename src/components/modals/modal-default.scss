@@ -1,0 +1,22 @@
+.modal-registry {
+  border-radius: 3px;
+  overflow: hidden;
+  padding: 0;
+
+  &.no-rounded-corners {
+    border-radius: 0px;
+  }
+
+  &.no-shadow {
+    box-shadow: none;
+  }
+}
+
+.modal-registry-blur {
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+}
+
+.blur {
+  filter: blur(13px) brightness(50%);
+}
