@@ -28,6 +28,10 @@
     float: left;
     margin: 0 0 10px 0;
 
+    &.max-width {
+      width: 100%;
+    }
+
     .label {
       font-weight: bold;
       display: block;
@@ -48,6 +52,14 @@
       display: block;
       font-size: 11px;
       color: #888;
+    }
+
+    .wysiwyg-wrapper {
+      border: 1px solid #ccc;
+    }
+
+    .wysiwyg-editor {
+      min-height: 223px; 
     }
   }
 

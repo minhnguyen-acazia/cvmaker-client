@@ -17,6 +17,8 @@ export class Button extends Component {
         return <Icon type='tick' />
       case 'add':
         return <Icon type='plus' />
+      case 'delete':
+        return <Icon type='cross' />
       default:
         return
     }
