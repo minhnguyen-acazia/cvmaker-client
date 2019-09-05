@@ -1,0 +1,61 @@
+@import '../../assets/styles/colors';
+
+.form-blueprint {
+  background: $color-white url(../../assets/images/bg_button.png) repeat-x bottom left;
+  padding: 5px 5px 10px 8px;
+  width: 75%;
+  border: 1px solid #d7d7d7;
+
+  .title {
+    font-size: 20px;
+    line-height: 30px;
+    margin: 0 0 20px 0;
+    overflow: hidden;
+    white-space: nowrap;
+    width: 100%;
+    text-overflow: ellipsis;
+    letter-spacing: 0;
+    color: #444;
+
+    .name {
+      float: left;
+      width: 94%;
+    }
+  }
+
+  .field {
+    width: 50%;
+    float: left;
+    margin: 0 0 10px 0;
+
+    .label {
+      font-weight: bold;
+      display: block;
+      color: #777;
+    }
+
+    input {
+      width: 92%;
+      background: $color-white url(../../assets/images/bg_input.png) repeat-x bottom left;
+      font-family: 'Open Sans','Helvetica Neue',Helvetica,Arial;
+      font-size: 13px;
+      padding: 6px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    .info {
+      display: block;
+      font-size: 11px;
+      color: #888;
+    }
+  }
+
+  hr {
+    background: #ddd;
+    height: 1px;
+    clear: both;
+    margin: 20px 0 20px 0;
+    border: 0;
+  }
+}
