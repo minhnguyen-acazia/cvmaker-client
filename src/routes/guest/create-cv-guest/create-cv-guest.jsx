@@ -9,6 +9,7 @@ import { AddSection } from '../../../components/modals/add-section/add-section'
 import { FormBasicInformation } from '../../../components/forms/form-basic-information'
 import { FormWorkExperience } from '../../../components/forms/form-work-experience'
 import { FormNewSection } from '../../../components/forms/form-new-section'
+import { FormNewSectionSpecial } from '../../../components/forms/form-new-section-special'
 
 export class CreateCVGuest extends Component {
   state = {
@@ -49,10 +50,15 @@ export class CreateCVGuest extends Component {
     modals.open({
       content: <AddSection onConfirm={(section, special) => {
         if (!section) return modals.close()
-        this.setState({ types: [...this.state.types, {
+        this.setState({ types: [...this.state.types.map(n => {
+          n.selected = false
+          return n
+        }), {
           name: section,
           original: false,
-          special: special
+          selected: true,
+          special: special,
+          data: { [section]: EditorState.createEmpty() }
         }] }, () => {
           modals.close()
         })
@@ -121,14 +127,16 @@ export class CreateCVGuest extends Component {
   renderForm = () => {
     let { types } = this.state
     types = types.filter(option => option.selected)
-    const { name, data } = types.length > 0 ? types[0] : this.state.types[0]
+    const { name, data, original, special } = types.length > 0 ? types[0] : this.state.types[0]
     switch (name) {
       case 'Basic information':
         return <FormBasicInformation title={name} data={data} handleInputChange={this.handleInputChange} />
       case 'Work experience':
         return <FormWorkExperience title={name} data={data} handleInputChange={this.handleInputChange} addEntry={this.addEntry} deleteEntry={this.deleteEntry} />
       default:
-        return <FormNewSection title={name} deleteEntry={this.deleteEntry} />
+        return special
+          ? <FormNewSectionSpecial title={name} data={data} handleInputChange={this.handleInputChange} addEntry={this.addEntry} deleteEntry={this.deleteEntry} />
+          : <FormNewSection title={name} data={data} handleInputChange={this.handleInputChange} deleteEntry={this.deleteEntry} original={original} />
     }
   }
 

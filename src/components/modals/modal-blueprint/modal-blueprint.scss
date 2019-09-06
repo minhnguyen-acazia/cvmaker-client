@@ -38,6 +38,20 @@
     }
   }
 
+  .modal-blueprint__content {
+    display: block;
+    width: auto;
+    min-height: 29.72px;
+    height: auto;
+    position: relative;
+    border: 0;
+    padding: .5em 1em;
+    background: 0;
+    overflow: hidden;
+    zoom: 1;
+    color: #444;
+  }
+
   .modal-blueprint__footer {
     display: flex;
     justify-content: flex-end;

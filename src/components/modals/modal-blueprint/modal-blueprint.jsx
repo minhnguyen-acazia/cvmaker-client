@@ -15,7 +15,9 @@ export function ModalBlueprint({ children, className, onConfirm, onCancel, butto
         <Icon type='cross' />
       </div>
 
-      {children}
+      <div className='modal-blueprint__content'>
+        {children}
+      </div>
 
       <div className='modal-blueprint__footer'>
         <Button text={buttonLabels[0]} onClick={onConfirm} />
