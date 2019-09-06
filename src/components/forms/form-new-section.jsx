@@ -1,7 +1,7 @@
 import React from 'react'
 import { FormBlueprint } from './form-blueprint'
 import { Button } from '../button/button'
-import { Editor } from 'react-draft-wysiwyg';
+import { Editor } from 'react-draft-wysiwyg'
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css'
 
 export function FormNewSection({ title, deleteEntry }) {

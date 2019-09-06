@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import classnames from 'classnames'
+import { EditorState } from 'draft-js'
 import './create-cv-guest.scss'
 import { GuestLayout } from '../guest-layout'
 import { Button } from '../../../components/button/button'
@@ -20,7 +21,7 @@ export class CreateCVGuest extends Component {
       name: 'Work experience',
       original: true,
       selected: false,
-      data: [{}]
+      data: [{ otherInformation: EditorState.createEmpty() }]
     }, {
       name: 'Qualifications',
       original: true,
@@ -81,10 +82,10 @@ export class CreateCVGuest extends Component {
     this.setState({ types })
   }
 
-  handleInputChange = (e, type, idx) => {
+  handleInputChange = (e, type, idx, editorState, fieldName) => {
     const { types } = this.state
-    const value = e.target.value
-    const name = e.target.name
+    const value = e ? e.target.value : editorState
+    const name = e ? e.target.name : fieldName
 
     types.map(n => {
       if (n.name === type) {

@@ -1,10 +1,14 @@
 import React from 'react'
 import { FormBlueprint } from './form-blueprint'
 import { Button } from '../button/button'
-import { Editor } from 'react-draft-wysiwyg';
+import { Editor } from 'react-draft-wysiwyg'
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css'
 
 const FormInstance = ({ idx, deleteEntry, title, data, handleInputChange }) => {
+  const onEditorStateChange = (editorState) => {
+    handleInputChange(null, title, idx, editorState, 'otherInformation')
+  }
+
   return (
     <div className='set'>
       <div className='field'>
@@ -27,7 +31,12 @@ const FormInstance = ({ idx, deleteEntry, title, data, handleInputChange }) => {
       </div>
       <div className='field max-width'>
         <label>Other information</label>
-        <Editor wrapperClassName='wysiwyg-wrapper' editorClassName='wysiwyg-editor' />
+        <Editor
+          editorState={data.otherInformation}
+          wrapperClassName='wysiwyg-wrapper'
+          editorClassName='wysiwyg-editor'
+          onEditorStateChange={onEditorStateChange}
+        />
         <span className='info'>Optional details such as job responsibilities, achievements etc.</span>
       </div>
       <Button type='delete' text='Delete' onClick={() => deleteEntry(title, idx)} />
