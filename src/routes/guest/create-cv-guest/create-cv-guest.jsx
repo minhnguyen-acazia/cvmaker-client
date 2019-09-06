@@ -14,7 +14,8 @@ export class CreateCVGuest extends Component {
     types: [{
       name: 'Basic information',
       original: true,
-      selected: true
+      selected: true,
+      data: {}
     }, {
       name: 'Work experience',
       original: true,
@@ -23,25 +24,30 @@ export class CreateCVGuest extends Component {
     }, {
       name: 'Qualifications',
       original: true,
-      selected: false
+      selected: false,
+      data: {}
     }, {
       name: 'Education',
       original: true,
-      selected: false
+      selected: false,
+      data: {}
     }, {
       name: 'Interests',
       original: true,
-      selected: false
+      selected: false,
+      data: {}
     }, {
       name: 'References',
       original: true,
-      selected: false
+      selected: false,
+      data: {}
     }]
   }
 
   attemptAddSection = () => {
     modals.open({
       content: <AddSection onConfirm={(section, special) => {
+        if (!section) return modals.close()
         this.setState({ types: [...this.state.types, {
           name: section,
           original: false,
@@ -75,6 +81,25 @@ export class CreateCVGuest extends Component {
     this.setState({ types })
   }
 
+  handleInputChange = (e, type, idx) => {
+    const { types } = this.state
+    const value = e.target.value
+    const name = e.target.name
+
+    types.map(n => {
+      if (n.name === type) {
+        if (Array.isArray(n.data)) {
+          n.data[idx][name] = value
+        } else {
+          n.data[name] = value
+        }
+      }
+      return n
+    })
+
+    this.setState({ types })
+  }
+
   renderSortableOptions = (types) => {
     return (
       <ul className='sortable-options'>
@@ -97,10 +122,10 @@ export class CreateCVGuest extends Component {
     types = types.filter(option => option.selected)
     const { name, data } = types.length > 0 ? types[0] : this.state.types[0]
     switch (name) {
-      case ('Basic information'):
-        return <FormBasicInformation title={name} />
+      case 'Basic information':
+        return <FormBasicInformation title={name} data={data} handleInputChange={this.handleInputChange} />
       case 'Work experience':
-        return <FormWorkExperience title={name} data={data} addEntry={this.addEntry} deleteEntry={this.deleteEntry} />
+        return <FormWorkExperience title={name} data={data} handleInputChange={this.handleInputChange} addEntry={this.addEntry} deleteEntry={this.deleteEntry} />
       default:
         return <FormNewSection title={name} deleteEntry={this.deleteEntry} />
     }
