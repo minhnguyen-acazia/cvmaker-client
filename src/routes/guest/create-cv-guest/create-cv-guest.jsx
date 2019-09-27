@@ -8,6 +8,7 @@ import { modals } from '../../../components/modals/modal-registry'
 import { AddSection } from '../../../components/modals/add-section/add-section'
 import { FormBasicInformation } from '../../../components/forms/form-basic-information'
 import { FormWorkExperience } from '../../../components/forms/form-work-experience'
+import { FormQualifications } from '../../../components/forms/form-qualifications'
 import { FormNewSection } from '../../../components/forms/form-new-section'
 import { FormNewSectionSpecial } from '../../../components/forms/form-new-section-special'
 
@@ -133,6 +134,8 @@ export class CreateCVGuest extends Component {
         return <FormBasicInformation title={name} data={data} handleInputChange={this.handleInputChange} />
       case 'Work experience':
         return <FormWorkExperience title={name} data={data} handleInputChange={this.handleInputChange} addEntry={this.addEntry} deleteEntry={this.deleteEntry} />
+      case 'Qualifications':
+        return <FormQualifications title={name} data={data} handleInputChange={this.handleInputChange} />
       default:
         return special
           ? <FormNewSectionSpecial title={name} data={data} handleInputChange={this.handleInputChange} addEntry={this.addEntry} deleteEntry={this.deleteEntry} />
