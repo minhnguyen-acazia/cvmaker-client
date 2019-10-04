@@ -1,0 +1,43 @@
+@import '../../../assets/styles/colors';
+
+.preview-options {
+  width: 650px;
+  // padding: 7px 14px;
+
+  .options {
+    float: left;
+    width: 50%;
+
+    p {
+      font-size: 18px;
+      border: 1px solid #ddd;
+      border-radius: 3px;
+      padding: 5px;
+      margin: 10px 0;
+    }
+
+    label {
+      cursor: pointer;
+      padding-left: 20px;
+      display: inline-block;
+      width: 80%;
+    }
+
+    input {
+      float: left;
+      background: $color-white url(../../../assets/images/bg_input.png) repeat-x bottom left;
+      margin-top: 3px;
+      margin-left: 3px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+  }
+
+  .preview-thumb {
+    float: right;
+    width: 250px;
+    height: 250px;
+    border: 1px solid #ccc;
+    margin: 10px 15px 0 0;
+  }
+}

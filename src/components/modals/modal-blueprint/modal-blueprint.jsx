@@ -29,5 +29,5 @@ export function ModalBlueprint({ children, className, onConfirm, onCancel, butto
 
 ModalBlueprint.defaultProps = {
   onConfirm: () => {},
-  onCancel: () => {}
+  onCancel: () => { modals.close() }
 }

@@ -6,6 +6,7 @@ import { GuestLayout } from '../guest-layout'
 import { Button } from '../../../components/button/button'
 import { modals } from '../../../components/modals/modal-registry'
 import { AddSection } from '../../../components/modals/add-section/add-section'
+import { PreviewOptions } from '../../../components/modals/preview/preview-options'
 import { FormBasicInformation } from '../../../components/forms/form-basic-information'
 import { FormWorkExperience } from '../../../components/forms/form-work-experience'
 import { FormQualifications } from '../../../components/forms/form-qualifications'
@@ -155,7 +156,7 @@ export class CreateCVGuest extends Component {
           </p>
           <div className='controls'>
             <Button type='help' text='Help' />
-            <Button type='preview' text='Quick preview' />
+            <Button type='preview' text='Quick preview' onClick={() => modals.open({ content: <PreviewOptions /> })} />
             <Button type='save' text='Save' />
             <Button type='download' text='Download' />
           </div>
