@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import { ModalRegistry } from './components/modals/modal-registry'
 
 import { CreateCVGuest } from './routes/guest/create-cv-guest/create-cv-guest'
+import { ResumeExperience } from './components/resumes/resume-experience/resume-experience'
 
 export default class App extends Component {
   render() {
@@ -12,6 +13,7 @@ export default class App extends Component {
         <Router>
           <Switch>
             <Route exact path='/' component={CreateCVGuest} />
+            <Route exact path='/resume-experience' component={ResumeExperience} />
           </Switch>
         </Router>
         <ModalRegistry />

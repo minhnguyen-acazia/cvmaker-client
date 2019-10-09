@@ -1,0 +1,205 @@
+$color-green: #192624;
+$color-white: #fff;
+$color-grey: #D4D5D5;
+$color-black: #182220;
+
+@mixin header($width, $color) {
+  width: $width;
+  font-size: 42px;
+  letter-spacing: 11.76px;
+  color: $color;
+  position: relative;
+  margin-bottom: 92px;
+
+  &:after {
+    content: '';
+    position: absolute;
+    width: $width;
+    height: 10px;
+    display: block;
+    background-color: $color;
+    bottom: -30px;
+  }
+}
+
+@mixin section-header() {
+  font-size: 37.5px;
+  letter-spacing: 3.7px;
+  color: $color-black;
+  font-weight: bold;
+}
+
+@mixin content() {
+  font-size: 37.5px;
+  line-height: 1.44;
+  letter-spacing: 3.7px;
+  color: $color-white;
+}
+
+@mixin section-content() {
+  font-size: 33px;
+  line-height: 1.6;
+  letter-spacing: 3.3px;
+  color: $color-black;
+}
+
+.resume-experience {
+  width: 2550px;
+  height: 3300px;
+  display: flex;
+
+  .left-column {
+    width: 998px;
+    height: 3300px;
+    background-color: $color-green;
+
+    .image {
+      width: 998px;
+      height: 832px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      img {
+        width: 609px;
+        height: 609px;
+        border-radius: 50%;
+      }
+    }
+
+    .profile-name {
+      padding-left: 146px;
+      margin-bottom: 136px;
+
+      .name {
+        font-size: 96px;
+        line-height: 1.125;
+        letter-spacing: 17.28px;
+        color: $color-white;
+        text-transform: uppercase;
+        margin-bottom: 48px;
+      }
+
+      .title {
+        font-size: 42px;
+        letter-spacing: 11.76px;
+        color: $color-white;
+      }
+    }
+
+    .about-me {
+      padding-left: 146px;
+      margin-bottom: 175px;
+
+      .header {
+        @include header($width: 292px, $color: $color-white);
+      }
+
+      .content {
+        @include content();
+      }
+    }
+
+    .contacts {
+      padding-left: 146px;
+      margin-bottom: 138px;
+
+      .header {
+        @include header($width: 292px, $color: $color-white);
+      }
+
+      .content {
+        div {
+          display: flex;
+        }
+        img {
+          margin-right: 35px;
+          width: fit-content;
+          height: fit-content;
+        }
+        span {
+          @include content();
+        }
+      }
+    }
+
+    .expertise {
+      padding-left: 146px;
+
+      .header {
+        @include header($width: 292px, $color: $color-white);
+      }
+
+      .content {
+        @include content();
+
+        .skill {
+          display: flex;
+          .skill-name {
+            width: 291px;
+          }
+          .skill-percentage {
+            width: 256px;
+            height: 28px;
+            background-color: $color-white;
+            .actual {
+              width: 60%;
+              height: 100%;
+              background-color: $color-grey;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .right-column {
+    width: 1552px;
+    height: 3300px;
+    background-color: $color-white;
+    padding-top: 154px;
+    padding-left: 139px;
+
+    .education {
+      margin-bottom: 253px;
+
+      .header {
+        @include header($width: 292px, $color: $color-black);
+      }
+
+      .section {
+        margin-bottom: 92px;
+        .section-header {
+          margin-bottom: 28px;
+          @include section-header();
+        }
+        .section-content {
+          p {
+            // margin-bottom: 22px;
+            @include section-content();
+          }
+        }
+      }
+    }
+
+    .experience {
+      .header {
+        @include header($width: 292px, $color: $color-black);
+      }
+
+      .section {
+        margin-bottom: 176px;
+        .section-header {
+          margin-bottom: 28px;
+          @include section-header();
+        }
+        .section-content {
+          p {
+            // margin-bottom: 22px;
+            @include section-content();
+          }
+        }
+      }
+    }
+  }
+}
