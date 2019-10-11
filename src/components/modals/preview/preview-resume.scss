@@ -1,0 +1,16 @@
+.preview-resume {
+  width: 950px;
+  height: 746px;
+
+  .modal-blueprint__content {
+    overflow-y: auto;
+    max-height: 642px;
+  }
+
+  .resume {
+    display: block;
+    max-width: 900px;
+    width: auto;
+    height: auto;
+  }
+}

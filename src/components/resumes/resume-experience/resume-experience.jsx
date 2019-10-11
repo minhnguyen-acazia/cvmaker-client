@@ -11,7 +11,7 @@ export function ResumeExperience() {
 		<div className='resume-experience'>
 			<div className='left-column'>
 				<div className='image'>
-					<img src={avatar} />
+					<img src={avatar} alt='avatar' />
 				</div>
 				<div className='profile-name'>
 					<p className='name'>Connor Greene</p>
