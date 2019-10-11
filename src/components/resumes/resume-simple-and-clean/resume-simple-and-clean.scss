@@ -1,0 +1,27 @@
+$color-white: #fff;
+$color-black: #1D1A1B;
+
+.resume-simple-and-clean {
+  width: 2551px;
+  height: 3579px;
+
+  .top-rectangle {
+    position: absolute;
+    top: 0;
+    left: 240px;
+    width: 649px;
+    height: 174px;
+    background-color: $color-black;
+  }
+
+  .profile-name {
+    margin-top: 276px;
+
+    .name {
+      font-size: 190px;
+    }
+    .title {
+      font-size: 70px;
+    }
+  }
+}

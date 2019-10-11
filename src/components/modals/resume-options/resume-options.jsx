@@ -51,7 +51,7 @@ export class ResumeOptions extends React.Component {
 
     options.forEach((n, index) => {
       n.selected = false
-      if (index === idx) n.selected = true 
+      if (index === idx) n.selected = true
     })
 
     this.setState({ options })
@@ -67,19 +67,19 @@ export class ResumeOptions extends React.Component {
 
   onDownloadResume = () => {
     const { size } = this.state
-    // this.setState({ loading: true }, () => {
+    this.setState({ loading: true }, () => {
       const resume = document.querySelector('.mock-data').children[0]
       html2canvas(resume).then(canvas => {
         // create an image of the canvas
         const imgData = canvas.toDataURL('image/png')
         // create a pdf from that image and then download
-        const pdf = new jsPDF('p', 'mm', 'a4')
+        const pdf = new jsPDF('p', 'mm', size)
         const width = pdf.internal.pageSize.getWidth()
         const height = pdf.internal.pageSize.getHeight()
         pdf.addImage(imgData, 'JPEG', 0, 0, width, height)
-        pdf.save('Resume.pdf')
+        pdf.save('Resume.pdf', { returnPromise: true }).then(this.setState({ loading: false }))
       })
-    // })
+    })
   }
 
   render() {
@@ -91,7 +91,7 @@ export class ResumeOptions extends React.Component {
         <div className='mock-data'>
           {options.find(n => n.selected).component}
         </div>
-        <ModalBlueprint className='resume-options' onConfirm={() => {
+        <ModalBlueprint className='resume-options' loading={loading} onConfirm={() => {
           if (preview) {
             this.onPreviewResume()
           } else if (download) {
@@ -102,7 +102,7 @@ export class ResumeOptions extends React.Component {
           <div style={{clear: 'both'}} />
           <div className='options'>
             {options.map((n, idx) => (
-              <p>
+              <p key={idx}>
                 <label>{n.name}</label>
                 <input type='radio' value='test' checked={n.selected} onChange={() => this.onSelectOption(idx)} />
               </p>
