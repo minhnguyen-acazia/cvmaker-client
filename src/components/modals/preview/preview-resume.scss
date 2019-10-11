@@ -1,3 +1,9 @@
+.mock-data {
+  position: absolute;
+  left: -9999px;
+  top: -9999px;
+}
+
 .preview-resume {
   width: 950px;
   height: 746px;
@@ -5,6 +11,13 @@
   .modal-blueprint__content {
     overflow-y: auto;
     max-height: 642px;
+  }
+
+  .place-holder {
+    height: 629px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
   .resume {
