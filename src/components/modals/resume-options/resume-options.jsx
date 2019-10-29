@@ -25,7 +25,7 @@ export class ResumeOptions extends React.Component {
       {
         name: 'Experience',
         img: PreviewExperience,
-        component: <ResumeExperience />,
+        component: <ResumeExperience data={this.props.forms} />,
         selected: true
       },
       {

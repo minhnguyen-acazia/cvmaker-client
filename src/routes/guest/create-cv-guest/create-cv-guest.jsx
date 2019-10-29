@@ -1,125 +1,80 @@
 import React, { Component } from 'react'
 import classnames from 'classnames'
-import { EditorState } from 'draft-js'
 import './create-cv-guest.scss'
 import { GuestLayout } from '../guest-layout'
 import { Button } from '../../../components/button/button'
 import { modals } from '../../../components/modals/modal-registry'
-import { AddSection } from '../../../components/modals/add-section/add-section'
 import { ResumeOptions } from '../../../components/modals/resume-options/resume-options'
 import { FormBasicInformation } from '../../../components/forms/form-basic-information'
 import { FormWorkExperience } from '../../../components/forms/form-work-experience'
 import { FormQualifications } from '../../../components/forms/form-qualifications'
-import { FormNewSection } from '../../../components/forms/form-new-section'
-import { FormNewSectionSpecial } from '../../../components/forms/form-new-section-special'
 
 export class CreateCVGuest extends Component {
   state = {
-    types: [{
-      name: 'Basic information',
-      original: true,
-      selected: true,
-      data: {}
-    }, {
-      name: 'Work experience',
-      original: true,
-      selected: false,
-      data: [{ otherInformation: EditorState.createEmpty() }]
-    }, {
-      name: 'Qualifications',
-      original: true,
-      selected: false,
-      data: {}
-    }, {
-      name: 'Education',
-      original: true,
-      selected: false,
-      data: {}
-    }, {
-      name: 'Interests',
-      original: true,
-      selected: false,
-      data: {}
-    }, {
-      name: 'References',
-      original: true,
-      selected: false,
-      data: {}
-    }]
-  }
-
-  attemptAddSection = () => {
-    modals.open({
-      content: <AddSection onConfirm={(section, special) => {
-        if (!section) return modals.close()
-        this.setState({ types: [...this.state.types.map(n => {
-          n.selected = false
-          return n
-        }), {
-          name: section,
-          original: false,
-          selected: true,
-          special: special,
-          data: { [section]: EditorState.createEmpty() }
-        }] }, () => {
-          modals.close()
-        })
-      }} />
-    })
+    forms: {
+      basicInformation: {
+        name: 'Basic information',
+        selected: true,
+        data: {}
+      },
+      workExperience: {
+        name: 'Work experience',
+        selected: false,
+        data: [{}]
+      },
+      education: {
+        name: 'Education',
+        selected: false,
+        data: [{}]
+      }
+    }
   }
 
   addEntry = (type) => {
-    let { types } = this.state
-    types = types.map(n => {
-      if (n.name === type) n.data.push({})
-      return n
+    let { forms } = this.state
+    Object.keys(forms).forEach(n => {
+      if (n === type) forms[n].data.push({})
     })
-    this.setState({ types })
+    this.setState({ forms })
   }
 
   deleteEntry = (type, idx) => {
-    let { types } = this.state
-    if (idx >= 0) {
-      types = types.map(n => {
-        if (n.name === type) n.data.splice(idx, 1)
-        return n
-      })
-    } else {
-      types = types.filter(n => n.name !== type)
-    }
-    this.setState({ types })
+    let { forms } = this.state
+    Object.keys(forms).forEach(n => {
+      if (n === type) forms[n].data.splice(idx, 1)
+    })
+    this.setState({ forms })
   }
 
-  handleInputChange = (e, type, idx, editorState, fieldName) => {
-    const { types } = this.state
-    const value = e ? e.target.value : editorState
-    const name = e ? e.target.name : fieldName
+  handleInputChange = (e, type, idx) => {
+    const { forms } = this.state
+    const value = e.target.value
+    const name = e.target.name
 
-    types.map(n => {
-      if (n.name === type) {
-        if (Array.isArray(n.data)) {
-          n.data[idx][name] = value
+    Object.keys(forms).map(n => {
+      if (n === type) {
+        if (Array.isArray(forms[n].data)) {
+          forms[n].data[idx][name] = value
         } else {
-          n.data[name] = value
+          forms[n].data[name] = value
         }
+        return forms[n]
       }
-      return n
     })
 
-    this.setState({ types })
+    this.setState({ forms })
   }
 
-  renderSortableOptions = (types) => {
+  renderSortableOptions = (forms) => {
     return (
       <ul className='sortable-options'>
-        {types.map((type, idx) => (
-          <li className={classnames('option', type.selected && 'selected')} key={idx} onClick={() => {
-            this.setState({types: types.map((innerType, innerIdx) => {
-              innerType.selected = innerIdx === idx
-              return innerType
-            })})
+        {Object.keys(forms).map((type) => (
+          <li className={classnames('option', forms[type].selected && 'selected')} key={type} onClick={() => {
+            Object.keys(forms).forEach(type => { forms[type].selected = false })
+            forms[type].selected = true
+            this.setState({ forms })
           }}>
-            {type.name}
+            {forms[type].name}
           </li>
         ))}
       </ul>
@@ -127,9 +82,12 @@ export class CreateCVGuest extends Component {
   }
 
   renderForm = () => {
-    let { types } = this.state
-    types = types.filter(option => option.selected)
-    const { name, data, original, special } = types.length > 0 ? types[0] : this.state.types[0]
+    let { forms } = this.state
+    forms = Object.keys(forms)
+      .map(type => forms[type])
+      .filter(form => form.selected)
+    const { name, data } = forms.length > 0 ? forms[0] : this.state.forms.workExperience
+
     switch (name) {
       case 'Basic information':
         return <FormBasicInformation title={name} data={data} handleInputChange={this.handleInputChange} />
@@ -137,15 +95,13 @@ export class CreateCVGuest extends Component {
         return <FormWorkExperience title={name} data={data} handleInputChange={this.handleInputChange} addEntry={this.addEntry} deleteEntry={this.deleteEntry} />
       case 'Qualifications':
         return <FormQualifications title={name} data={data} handleInputChange={this.handleInputChange} />
-      default:
-        return special
-          ? <FormNewSectionSpecial title={name} data={data} handleInputChange={this.handleInputChange} addEntry={this.addEntry} deleteEntry={this.deleteEntry} />
-          : <FormNewSection title={name} data={data} handleInputChange={this.handleInputChange} deleteEntry={this.deleteEntry} original={original} />
+      
     }
   }
 
   render() {
-    const { types } = this.state
+    const { forms } = this.state
+    // console.log(forms.basicInformation.data)
 
     return (
       <GuestLayout content={(
@@ -156,16 +112,16 @@ export class CreateCVGuest extends Component {
           </p>
           <div className='controls'>
             <Button type='help' text='Help' />
-            <Button type='preview' text='Quick preview' onClick={() => modals.open({ content: <ResumeOptions preview /> })} />
+            <Button type='preview' text='Quick preview' onClick={() => modals.open({ content: <ResumeOptions forms={forms} preview /> })} />
             <Button type='save' text='Save' />
-            <Button type='download' text='Download' onClick={() => modals.open({ content: <ResumeOptions download /> })} />
+            <Button type='download' text='Download' onClick={() => modals.open({ content: <ResumeOptions forms={forms} download /> })} />
           </div>
           <div className='main-form'>
             <div className='options'>
-              {this.renderSortableOptions(types)}
-              <Button type='add' className='add' text='Add a new section' onClick={this.attemptAddSection} />
+              {this.renderSortableOptions(forms)}
+              {/* <Button type='add' className='add' text='Add a new section' onClick={this.attemptAddSection} />
               <p className='msg'>* Click and drag section names in the above list to reorder sections in your CV.</p>
-              <p className='msg'>* If you leave the fields in a section empty, the section will not appear in your CV.</p>
+              <p className='msg'>* If you leave the fields in a section empty, the section will not appear in your CV.</p> */}
             </div>
             {this.renderForm()}
           </div>

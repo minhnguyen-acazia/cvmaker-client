@@ -38,6 +38,12 @@
 
     &.max-width {
       width: 100%;
+
+      textarea {
+        width: 95%;
+        height: 250px;
+        margin-left: 5px;
+      }
     }
 
     .label {

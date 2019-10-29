@@ -6,7 +6,8 @@ import phone from '../../../assets/images/resume-experience/phone.png'
 import email from '../../../assets/images/resume-experience/email.png'
 import website from '../../../assets/images/resume-experience/website.png'
 
-export function ResumeExperience() {
+export function ResumeExperience({ data: { basicInformation, workExperience } }) {
+	console.log(basicInformation)
 	return (
 		<div className='resume-experience'>
 			<div className='left-column'>
@@ -14,13 +15,14 @@ export function ResumeExperience() {
 					<img src={avatar} alt='avatar' />
 				</div>
 				<div className='profile-name'>
-					<p className='name'>Connor Greene</p>
-					<p className='title'>Graphic Designer</p>
+					<p className='name'>{basicInformation.data.fullName}</p>
+					<p className='title'>{basicInformation.data.jobTitle}</p>
 				</div>
 				<div className='about-me'>
 					<div className='header'>About Me</div>
 					<div className='content'>
-						I am passionate person when it comes to art. A positive creative individual with a smile. I am interested tighting up with this company. I am a grateful person in every little thing. 
+						{/* I am passionate person when it comes to art. A positive creative individual with a smile. I am interested tighting up with this company. I am a grateful person in every little thing.  */}
+						{basicInformation.data.about}
 					</div>
 				</div>
 				<div className='contacts'>
@@ -28,19 +30,19 @@ export function ResumeExperience() {
 					<div className='content'>
 						<div>
 							<img src={address} alt='address' />
-							<span>52-F Lincoln St. Mankato City, Mankato</span>
+							<span>{basicInformation.data.address}</span>
 						</div>
 						<div>
 							<img src={phone} alt='phone' />
-							<span>+54-123-456789</span>
+							<span>{basicInformation.data.phoneNumber}</span>
 						</div>
 						<div>
 							<img src={email} alt='email' />
-							<span>nickmichaels@email.com</span>
+							<span>{basicInformation.data.email}</span>
 						</div>
 						<div>
 							<img src={website} alt='website' />
-							<span>nickmichaels.com</span>
+							<span>{basicInformation.data.website}</span>
 						</div>
 					</div>
 				</div>
@@ -103,7 +105,18 @@ export function ResumeExperience() {
 				<div className='experience'>
 					<div className='header'>Experience</div>
 					<div className='content'>
-						<div className='section'>
+						{workExperience.data.map(n =>(
+							<div className='section'>
+								<div className='section-header'>{n.jobTitle}</div>
+								<div className='section-content'>
+									<p>{n.companyName} {n.startDate}-{n.endDate}</p>
+									<p>{n.otherInfo}</p>
+								</div>
+							</div>
+						))}
+
+
+						{/* <div className='section'>
 							<div className='section-header'>Senior Graphic Designer </div>
 							<div className='section-content'>
 								<p>Gullible Enterprises 2020-2024</p>
@@ -130,7 +143,7 @@ export function ResumeExperience() {
 								<p>CRR Technologies 2016-2012</p>
 								<p>Creates graphics designs for the diffrent websites wordwide. Follow up with establish customers to offer additional products or services. Assists employees with the latest graphic trends and apply it to the daily needs of the company. Research graphic trends and help the graphic team</p>
 							</div>
-						</div>
+						</div> */}
 					</div>
 				</div>
 			</div>
