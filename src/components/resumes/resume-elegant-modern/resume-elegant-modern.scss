@@ -1,0 +1,72 @@
+@import '../../../assets/styles/variables';
+
+$color-dark: #1C1C1C;
+$color-white: #FFFFFF;
+$color-brownish-orange: #C96A24;
+$color-aluminium: #989898;
+
+.resume-elegant-modern {
+  width: 2551px;
+  height: 3579px;
+
+  .section-1 {
+    width: 100%;
+    padding: 110px 107px 0;
+    background-color: $color-dark;
+    display: flex;
+
+    .col-1 {
+      width: 1214px;
+      display: flex;
+
+      .avatar {
+        margin-right: 78px;
+      }
+
+      .profile {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+
+        .first-name,
+        .last-name {
+          font-size: 118.4px;
+          font-family: $font-myriadpro-regular;
+          line-height: 1;
+          color: $color-white;
+        }
+        .last-name {
+          color: $color-brownish-orange;
+        }
+        .title {
+          font-size: 33.33px;
+          font-family: $font-montserrat-semibold;
+          color: $color-white;
+        }
+      }
+    }
+
+    .col-2 {
+      color: $color-aluminium;
+
+      .contact {
+        .contact-item {
+          font-size: 33.58px;
+          line-height: 2;
+          .label {
+            display: inline-block;
+            width: 229px;
+            font-family: $font-montserrat-bold;
+          }
+          .value {
+            font-family: $font-montserrat-regular;
+          }
+        }
+      }
+
+      .about {
+        
+      }
+    }
+  }
+}

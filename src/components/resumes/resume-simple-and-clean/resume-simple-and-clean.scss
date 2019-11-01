@@ -13,15 +13,12 @@ $color-purplish-grey: #707070;
   height: 3579px;
   padding-left: 240px;
   padding-right: 200px;
-  // position: relative;
   background-color: $color-white;
 
   .top-rectangle-container {
     height: 276px;
     width: 100%;
     .top-rectangle {
-      // position: absolute;
-      // top: 0;
       margin-left: 240px;
       width: 649px;
       height: 174px;
@@ -30,8 +27,6 @@ $color-purplish-grey: #707070;
   }
 
   .profile-name {
-    // margin-top: 276px;
-
     .name {
       font-size: 190px;
       font-family: $font-roboto-light;
@@ -47,7 +42,6 @@ $color-purplish-grey: #707070;
     display: flex;
 
     .left-column {
-      // height: 2618px;
       height: 2720px;
       width: 650px;
       background-color: $color-black;
