@@ -7,22 +7,26 @@ import { modals } from '../../../components/modals/modal-registry'
 import { ResumeOptions } from '../../../components/modals/resume-options/resume-options'
 import { FormBasicInformation } from '../../../components/forms/form-basic-information'
 import { FormWorkExperience } from '../../../components/forms/form-work-experience'
-import { FormQualifications } from '../../../components/forms/form-qualifications'
+import { FormEducation } from '../../../components/forms/form-education'
+// import { FormQualifications } from '../../../components/forms/form-qualifications'
 
 export class CreateCVGuest extends Component {
   state = {
     forms: {
       basicInformation: {
+        id: 'basicInformation',
         name: 'Basic information',
         selected: true,
         data: {}
       },
       workExperience: {
+        id: 'workExperience',
         name: 'Work experience',
         selected: false,
         data: [{}]
       },
       education: {
+        id: 'education',
         name: 'Education',
         selected: false,
         data: [{}]
@@ -86,22 +90,24 @@ export class CreateCVGuest extends Component {
     forms = Object.keys(forms)
       .map(type => forms[type])
       .filter(form => form.selected)
-    const { name, data } = forms.length > 0 ? forms[0] : this.state.forms.workExperience
+    const { id, name, data } = forms.length > 0 ? forms[0] : this.state.forms.workExperience
 
-    switch (name) {
-      case 'Basic information':
+    switch (id) {
+      case 'basicInformation':
         return <FormBasicInformation title={name} data={data} handleInputChange={this.handleInputChange} />
-      case 'Work experience':
+      case 'workExperience':
         return <FormWorkExperience title={name} data={data} handleInputChange={this.handleInputChange} addEntry={this.addEntry} deleteEntry={this.deleteEntry} />
-      case 'Qualifications':
-        return <FormQualifications title={name} data={data} handleInputChange={this.handleInputChange} />
+      case 'education':
+        return <FormEducation title={name} data={data} handleInputChange={this.handleInputChange} addEntry={this.addEntry} deleteEntry={this.deleteEntry} />
+      // case 'Qualifications':
+      //   return <FormQualifications title={name} data={data} handleInputChange={this.handleInputChange} />
       
     }
   }
 
   render() {
     const { forms } = this.state
-    // console.log(forms.basicInformation.data)
+    console.log(forms.education.data)
 
     return (
       <GuestLayout content={(

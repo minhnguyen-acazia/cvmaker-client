@@ -6,8 +6,7 @@ import phone from '../../../assets/images/resume-experience/phone.png'
 import email from '../../../assets/images/resume-experience/email.png'
 import website from '../../../assets/images/resume-experience/website.png'
 
-export function ResumeExperience({ data: { basicInformation, workExperience } }) {
-	console.log(basicInformation)
+export function ResumeExperience({ data: { basicInformation, workExperience, education } }) {
 	return (
 		<div className='resume-experience'>
 			<div className='left-column'>
@@ -86,7 +85,16 @@ export function ResumeExperience({ data: { basicInformation, workExperience } })
 				<div className='education'>
 					<div className='header'>Education</div>
 					<div className='content'>
-						<div className='section'>
+						{education.data.map(n => (
+							<div className='section'>
+								<div className='section-header'>{n.courseName} {n.startDate}-{n.endDate}</div>
+								<div className='section-content'>
+									<p>{n.institutionName}</p>
+									<p>{n.otherInfo}</p>
+								</div>
+							</div>
+						))}
+						{/* <div className='section'>
 							<div className='section-header'>Master in Graphics 2005-2010</div>
 							<div className='section-content'>
 								<p>University of California Master Degree(2012-2016)</p>
@@ -99,7 +107,7 @@ export function ResumeExperience({ data: { basicInformation, workExperience } })
 								<p>University of California Master Degree(2012-2016)</p>
 								<p>UI/UX Design Winner, Coursework Multimedia</p>
 							</div>
-						</div>
+						</div> */}
 					</div>
 				</div>
 				<div className='experience'>
