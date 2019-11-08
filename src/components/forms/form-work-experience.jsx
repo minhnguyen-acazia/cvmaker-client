@@ -1,7 +1,6 @@
 import React from 'react'
 import { FormBlueprint } from './form-blueprint'
 import { Button } from '../button/button'
-import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css'
 
 const FormID = 'workExperience'
 

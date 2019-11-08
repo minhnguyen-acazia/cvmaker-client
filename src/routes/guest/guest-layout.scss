@@ -22,6 +22,10 @@
       display: flex;
       span {
         margin-left: 10px;
+        cursor: pointer;
+        &:hover {
+          color: $color-light-grey;
+        }
       }
     }
   }

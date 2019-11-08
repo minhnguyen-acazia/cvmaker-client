@@ -1,0 +1,15 @@
+.login-route {
+  width: 1000px;
+  height: 100%;
+  margin: 35px auto 0;
+
+  .no-time {
+    display: flex;
+    float: right;
+    margin-top: 35px;
+
+    .button {
+      margin-left: 15px;
+    }
+  }
+}

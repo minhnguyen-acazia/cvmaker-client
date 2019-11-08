@@ -30,6 +30,12 @@ export class CreateCVGuest extends Component {
         name: 'Education',
         selected: false,
         data: [{}]
+      },
+      skills: {
+        id: 'skills',
+        name: 'Skills',
+        selected: false,
+        data: [{}]
       }
     }
   }
@@ -107,7 +113,7 @@ export class CreateCVGuest extends Component {
 
   render() {
     const { forms } = this.state
-    console.log(forms.education.data)
+    // console.log(forms.education.data)
 
     return (
       <GuestLayout content={(

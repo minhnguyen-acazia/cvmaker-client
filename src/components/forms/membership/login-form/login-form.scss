@@ -1,0 +1,30 @@
+.login-form {
+  .forgot {
+    margin: 0 0 10px 0;
+    cursor: pointer;
+    small {
+      font-size: smaller;
+    }
+  }
+
+  .options {
+    .fb-login-button {
+      background: url(../../../../assets/images/ico_fb_login.png) no-repeat;
+      width: 145px;
+      height: 23px;
+      overflow: hidden;
+      text-indent: -999px;
+      margin-bottom: 10px;
+      display: inline-block;
+    }
+    .google-login-button {
+      background: url(../../../../assets/images/ico_google_login.png) no-repeat;
+      width: 145px;
+      height: 23px;
+      overflow: hidden;
+      text-indent: -999px;
+      margin-bottom: 10px;
+      display: inline-block;
+    }
+  }
+}

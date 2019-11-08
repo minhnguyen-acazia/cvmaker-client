@@ -1,0 +1,31 @@
+@import '../../../assets/styles/colors';
+
+.membership-form {
+  background: $color-white;
+  // float: left;
+  width: 45%;
+  padding: 15px;
+  min-height: 230px;
+  border: 1px solid $color-lighter-grey;
+  position: relative;
+
+  .form {
+    .title {
+      margin-bottom: 30px;
+      font-size: 25px;
+      line-height: 24px;
+      letter-spacing: 0;
+    }
+
+    .field {
+      margin: 0 0 10px 0;
+      label {
+        width: 150px;
+        float: left;
+        display: block;
+        margin-right: 5px;
+        font-weight: bold;
+      }
+    }
+  }
+}
