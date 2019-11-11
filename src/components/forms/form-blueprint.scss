@@ -45,38 +45,6 @@
         margin-left: 5px;
       }
     }
-
-    .label {
-      font-weight: bold;
-      display: block;
-      color: #777;
-    }
-
-    input {
-      width: 92%;
-      background: $color-white url(../../assets/images/bg_input.png) repeat-x bottom left;
-      font-family: 'Open Sans','Helvetica Neue',Helvetica,Arial;
-      font-size: 13px;
-      padding: 6px;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-    }
-
-    .info {
-      display: block;
-      font-size: 11px;
-      color: #888;
-    }
-  }
-
-  .wysiwyg-wrapper {
-    border: 1px solid #ccc;
-    margin: 0 5px;
-  }
-
-  .wysiwyg-editor {
-    min-height: 223px;
-    padding: 0 8px;
   }
 
   hr {

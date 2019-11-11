@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import './login-form.scss'
 import { MembershipFormBlueprint } from '../membership-form-blueprint'
+import { FormInput } from '../../../form-input/form-input'
 import { Button } from '../../../button/button'
 import { customHistory } from '../../../../common/history'
 
@@ -9,14 +10,8 @@ export class LoginForm extends Component {
     return (
       <MembershipFormBlueprint className='login-form'>
         <h2 className='title'>Member login</h2>
-        <p className='field'>
-          <label for='text-email1'>E-mail</label>
-          <input maxlength='100' type='text' id='text-email1' name='email' class='text' value='' />
-        </p>
-        <p className='field'>
-          <label for='password-password2'>Password</label>
-          <input type='password' id='password-password2' name='password' value='' />
-        </p>
+        <FormInput className='field' label='E-mail' inlineLabel maxLength='100' type='email' id='text-email1' name='email' value='' />
+        <FormInput className='field' label='Password' inlineLabel type='password' id='password-password2' name='password' value='' />
         <p className='field'>
           <label for='submit-submit3'>&nbsp;</label>
           <Button text='Login' />

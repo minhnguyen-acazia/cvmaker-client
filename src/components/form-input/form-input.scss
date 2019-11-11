@@ -1,0 +1,43 @@
+@import '../../assets/styles/colors';
+
+.form-input-field {
+  label {
+    font-weight: bold;
+    display: block;
+    color: #777;
+  }
+
+  .form-input {
+    width: 92%;
+    background: $color-white url(../../assets/images/bg_input.png) repeat-x bottom left;
+    font-family: 'Open Sans','Helvetica Neue',Helvetica,Arial;
+    font-size: 13px;
+    padding: 6px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+
+  span {
+    display: block;
+    font-size: 11px;
+    color: #888;
+  }
+
+  &.inline-label {
+    label {
+      width: 150px;
+      float: left;
+      display: block;
+      margin-right: 5px;
+      font-weight: bold;
+    }
+
+    .form-input {
+      width: 50%;
+    }
+
+    // span {
+    //   padding-left: 155px;
+    // }
+  }
+}
