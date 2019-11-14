@@ -9,7 +9,8 @@ export class ResumeEdit extends Component {
     super(props)
     this.state = {
       cvName: '',
-      industry: 'other'
+      industry: 'other',
+      error: false
     }
     this.handleChange = this.handleChange.bind(this)
   }
@@ -21,18 +22,27 @@ export class ResumeEdit extends Component {
 
   handleChange(event) {
     const { value, name } = event.target
-    this.setState({ [name]: value })
+    this.setState({ 
+      [name]: value,
+      ...(name === 'cvName' && { error: false })
+    })
   }
 
   render() {
-    const { cvName, industry } = this.state
+    const { cvName, industry, error } = this.state
     const { onConfirm } = this.props
     return (
       <ModalBlueprint
         className='resume-edit' buttonLabels={['Save', 'Cancel']}
-        onConfirm={() => onConfirm(cvName, industry)}
+        onConfirm={() => {
+          if (!cvName.trim()) {
+            this.setState({ error: true })
+          } else {
+            onConfirm(cvName, industry)
+          }
+        }}
       >
-        <FormInput className='field' name='cvName' type='text' value={cvName} handleChange={this.handleChange} label='Enter a name for your CV' />
+        <FormInput className='field' name='cvName' type='text' error={error} value={cvName} handleChange={this.handleChange} label='Enter a name for your CV' />
         <FormInput className='field' name='industry' type='select' value={industry} handleChange={this.handleChange} label='Industry' options={Industries} />
       </ModalBlueprint>
     )

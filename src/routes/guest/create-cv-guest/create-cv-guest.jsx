@@ -107,7 +107,8 @@ export class CreateCVGuest extends Component {
         return <FormEducation title={name} data={data} handleInputChange={this.handleInputChange} addEntry={this.addEntry} deleteEntry={this.deleteEntry} />
       // case 'Qualifications':
       //   return <FormQualifications title={name} data={data} handleInputChange={this.handleInputChange} />
-      
+      default:
+        return null
     }
   }
 

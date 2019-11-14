@@ -2,32 +2,38 @@ import React from 'react'
 import classnames from 'classnames'
 import './form-input.scss'
 
-export function FormInput({ className, handleChange, type, label, inlineLabel, description, options, ...otherProps }) {
+const generateRandomID = () => {
+  return Math.random().toString(36).replace(/[^a-z]+/g, '').substr(2, 10)
+}
+
+export function FormInput({ className, handleChange, type, label, inlineLabel, description, options, error, ...otherProps }) {
+  const id = generateRandomID()
+
   const renderInput = () => {
     switch (type) {
       case 'text':
       case 'password':
       case 'tel':
       case 'email':
-        return <input className='form-input' type={type} onChange={handleChange} {...otherProps} />
+        return <input id={id} className='form-input' type={type} onChange={handleChange} {...otherProps} />
       case 'text-area':
-        return <textarea className='form-input' onChange={handleChange} {...otherProps} />
+        return <textarea id={id} className='form-input' onChange={handleChange} {...otherProps} />
       case 'select':
         return (
-          <select className='form-input' onChange={handleChange} {...otherProps}>
-            {options.map(n => (
-              <option value={n.value}>{n.label}</option>
+          <select id={id} className='form-input' onChange={handleChange} {...otherProps}>
+            {options.map((n, idx) => (
+              <option key={idx} value={n.value}>{n.label}</option>
             ))}
           </select>
         )
       default:
-        return <input className='form-input' type={type} onChange={handleChange} {...otherProps} />
+        return <input id={id} className='form-input' type={type} onChange={handleChange} {...otherProps} />
     }
   }
 
   return (
-    <div className={classnames('form-input-field', className ? className : '', inlineLabel ? 'inline-label' : '')}>
-      {label && <label>{label}</label>}
+    <div className={classnames('form-input-field', className ? className : '', inlineLabel ? 'inline-label' : '', error ? 'error' : '')}>
+      {label && <label htmlFor={id}>{label}</label>}
       {renderInput()}
       {description && <span className='description'>{description}</span>}
     </div>

@@ -35,9 +35,11 @@
     .form-input {
       width: 50%;
     }
+  }
 
-    // span {
-    //   padding-left: 155px;
-    // }
+  &.error {
+    input {
+      border: 1px solid red;
+    }
   }
 }

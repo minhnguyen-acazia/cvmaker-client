@@ -48,9 +48,27 @@ export class MyCV extends Component {
     })
   }
 
-  renderRow(item) {
+  onCopyCV (item, idx) {
+    const { cv } = this.state
+    const newCV = {
+      id: new Date().getTime(),
+      cvName: `Copy of ${item.cvName}`,
+      modifiedDate: item.modifiedDate,
+      industry: item.industry
+    }
+    cv.splice(idx + 1, 0, newCV)
+    this.setState({ cv })
+  }
+
+  onDeleteCV (idx) {
+    const { cv } = this.state
+    cv.splice(idx, 1)
+    this.setState({ cv })
+  }
+
+  renderRow(item, idx) {
     return (
-      <div className='table-item'>
+      <div key={item.id} className='table-item'>
         <div className='name'>
           <span>{item.cvName}</span>
           <div className='edit' onClick={() => this.onEditCV(item)}>
@@ -63,9 +81,9 @@ export class MyCV extends Component {
             <Button type='share' text='Share' />
           </div>
           <div className='right-side'>
-            <Button type='copy' text='Copy' />
+            <Button type='copy' text='Copy' onClick={() => this.onCopyCV(item, idx)} />
             <Button type='rename' text='Rename' onClick={() => this.onEditCV(item)} />
-            <Button type='delete' text='Delete' />
+            <Button type='delete' text='Delete' onClick={() => this.onDeleteCV(idx)} />
           </div>
         </div>
       </div>
@@ -87,7 +105,7 @@ export class MyCV extends Component {
               <div className='options'>Options</div>
             </div>
             <div className='table-content'>
-              {cv.map(n => this.renderRow(n))}
+              {cv.map((n, idx) => this.renderRow(n, idx))}
             </div>
           </div>
         </div>

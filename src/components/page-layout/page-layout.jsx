@@ -13,7 +13,7 @@ export const PageLayout = ({ content, authenticated }) => {
             {authenticated ? (
               <>
                 <div className='nav-item'>Hi User</div>
-                <div className='nav-item'>Edit account</div>
+                <div className='nav-item' onClick={() => customHistory.push('/my-account')}>Edit account</div>
                 <div className='nav-item'>Logout</div>
               </>
             ) : (
@@ -25,7 +25,7 @@ export const PageLayout = ({ content, authenticated }) => {
           </div>
         </div>
         <div className='page-layout__header--main'>
-          <img src={require('../../assets/images/logo.png')} alt='logo' />
+          <img src={require('../../assets/images/logo.png')} alt='logo' onClick={() => customHistory.push('/')} />
         </div>
       </div>
       <div className='page-layout__content'>

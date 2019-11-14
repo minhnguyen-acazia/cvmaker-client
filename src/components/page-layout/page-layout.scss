@@ -22,6 +22,7 @@
       display: flex;
 
       .nav-item {
+        cursor: pointer;
         margin-left: 15px;
         &:hover {
           color: $color-light-grey;
@@ -45,6 +46,9 @@
     background-color: $color-white;
     height: 85px;
     border-bottom: 1px solid $color-light-grey;
+    img {
+      cursor: pointer;
+    }
   }
 
   &__footer {
