@@ -19,6 +19,12 @@ export class Button extends Component {
         return <Icon type='plus' />
       case 'delete':
         return <Icon type='cross' />
+      case 'rename':
+        return <Icon type='pencil' />
+      case 'copy':
+        return <Icon type='copy' />
+      case 'share':
+        return <Icon type='rss' />
       default:
         return
     }

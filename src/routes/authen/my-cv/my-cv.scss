@@ -1,0 +1,98 @@
+@import '../../../assets/styles/colors';
+
+.my-cv {
+  width: 1000px;
+  margin: 35px auto 30px;
+
+  h1 {
+    margin: 0 0 10px 0;
+    font-size: 32px;
+    font-weight: 300;
+    line-height: 38px;
+    color: $color-charcoal-grey;
+  }
+
+  .cv-table {
+    width: 100%;
+    margin-top: 25px;
+    border-radius: 3px;
+    border: 1px solid $color-light-grey;
+
+    .table-header {
+      display: flex;
+      background: $color-white url(../../../assets/images/bg_button.png) repeat-x bottom left;
+      font-weight: bold;
+
+      .options {
+        justify-content: flex-end;
+      }
+    }
+
+    .name {
+      width: 30%;
+      padding: 6px 10px;
+      border: 1px solid $color-pale-grey;
+    }
+
+    .last-modified {
+      width: 18%;
+      padding: 6px 10px;
+      border: 1px solid $color-pale-grey;
+    }
+
+    .options {
+      width: 52%;
+      padding: 6px 10px;
+      border: 1px solid $color-pale-grey;
+      display: flex;
+      justify-content: space-between;
+
+      .right-side {
+        display: flex;
+        .button {
+          margin-left: 5px;
+        }
+      }
+    }
+
+    .table-item {
+      display: flex;
+      background: $color-white;
+
+      &:nth-child(2n+1) {
+        background: $color-paler-grey;
+      }
+
+      &:hover {
+        background: $color-very-pale-grey;
+
+        .options {
+          opacity: 1;
+        }
+      }
+
+      .name {
+        display: flex;
+        justify-content: space-between;
+
+        .edit {
+          cursor: pointer;
+          background: url(../../../assets/images/options.png) no-repeat right 5px;
+          text-align: right;
+          color: $color-aluminium-grey;
+          font-size: 10px;
+          line-height: 16px;
+          padding-right: 15px;
+          &:hover {
+            color: $color-black;
+          }
+        }
+      }
+
+      .options {
+        opacity: 0;
+        transition: opacity 0.2s linear;
+      }
+    }
+  }
+}

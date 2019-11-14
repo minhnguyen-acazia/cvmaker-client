@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import './login-route.scss'
-import { GuestLayout } from '../guest-layout'
+import { PageLayout } from '../../../components/page-layout/page-layout'
 import { LoginForm } from '../../../components/forms/membership/login-form/login-form'
 import { RegisterForm } from '../../../components/forms/membership/register-form/register-form'
 import { Button } from '../../../components/button/button'
@@ -8,7 +8,7 @@ import { Button } from '../../../components/button/button'
 export class LoginRoute extends Component {
   render() {
     return (
-      <GuestLayout content={(
+      <PageLayout content={(
         <div className='login-route'>
           <LoginForm />
           <RegisterForm />

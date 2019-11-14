@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import classnames from 'classnames'
 import './create-cv-guest.scss'
-import { GuestLayout } from '../guest-layout'
+import { PageLayout } from '../../../components/page-layout/page-layout'
 import { Button } from '../../../components/button/button'
 import { modals } from '../../../components/modals/modal-registry'
 import { ResumeOptions } from '../../../components/modals/resume-options/resume-options'
@@ -116,7 +116,7 @@ export class CreateCVGuest extends Component {
     // console.log(forms.education.data)
 
     return (
-      <GuestLayout content={(
+      <PageLayout content={(
         <div className='create-cv-guest'>
           <p className='notice'>
             <strong>You are not logged in.</strong>
