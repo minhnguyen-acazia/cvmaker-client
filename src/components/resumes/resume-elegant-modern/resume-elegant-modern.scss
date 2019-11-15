@@ -4,19 +4,49 @@ $color-dark: #1C1C1C;
 $color-white: #FFFFFF;
 $color-brownish-orange: #C96A24;
 $color-aluminium: #989898;
+$color-nice-blue: #1284B9;
+$color-light-blue: #64CAF5;
+$color-maize-yellow: #EAD73D;
+
+@mixin header ($line-width, $title-width, $margin-left, $margin-right, $margin-bottom) {
+  display: flex;
+  align-items: center;
+  margin-left: $margin-left;
+  margin-bottom: $margin-bottom;
+
+  .header-title {
+    font-family: $font-bebasneue-regular;
+    font-size: 75.45px;
+    // line-height: 125px;
+    vertical-align: middle;
+    text-align: right;
+    margin-right: $margin-right;
+    width: $title-width;
+  }
+
+  .header-line {
+    width: $line-width;
+    height: 3px;
+    background-color: $color-aluminium;
+  }
+}
 
 .resume-elegant-modern {
   width: 2551px;
   height: 3579px;
 
+  /*
+    HEADER SECTION
+  */
+
   .section-1 {
     width: 100%;
-    padding: 110px 107px 0;
+    padding: 110px 107px;
     background-color: $color-dark;
     display: flex;
 
     .col-1 {
-      width: 1214px;
+      width: 1129px;
       display: flex;
 
       .avatar {
@@ -46,8 +76,16 @@ $color-aluminium: #989898;
       }
     }
 
+    .separator {
+      margin: 0px 79px;
+      width: 3px;
+      height: 533px;
+      background-color: $color-aluminium;
+    }
+
     .col-2 {
       color: $color-aluminium;
+      width: 1044px;
 
       .contact {
         .contact-item {
@@ -64,9 +102,161 @@ $color-aluminium: #989898;
         }
       }
 
-      .about {
-        
+      .separator {
+        margin: 56px 0px;
+        background-color: $color-aluminium;
+        width: 100%;
+        height: 3px;
       }
+
+      .about {
+        .title {
+          font-size: 75.45px;
+          line-height: 125px;
+          font-family: $font-bebasneue-bold;
+        }
+        .description {
+          font-size: 33.33px;
+          line-height: 50px;
+        }
+      }
+    }
+  }
+
+  /*
+    EXPERIENCE SECTION
+  */
+
+  .section-2 {
+    height: 1233px;
+    display: flex;
+
+    .experiences {
+      width: 1629px;
+      padding-top: 125px;
+
+      .header {
+        @include header(
+          $line-width: 1000px,
+          $title-width: 325px,
+          $margin-left: 107px,
+          $margin-right: 111px,
+          $margin-bottom: 75px);
+      }
+
+      .experience {
+        margin-left: 107px;
+        margin-bottom: 76px;
+        display: flex;
+
+        .col-1 {
+          width: 325px;
+          text-align: right;
+          .title {
+            font-size: 54.19px;
+            // line-height: 62.53px;
+            font-family: $font-bebasneue-bold;
+            color: $color-nice-blue;
+            letter-spacing: 2.7px;
+            span {
+              display: inline-block;
+            }
+          }
+          .time {
+            font-size: 33.33px;
+            // line-height: 49.99px;
+            font-family: $font-montserrat-semibold;
+            color: $color-aluminium;
+            white-space: nowrap;
+          }
+        }
+
+        .col-2 {
+          width: 1000px;
+          margin-left: 121px;
+          .place {
+            font-family: $font-montserrat-semibold;
+            font-size: 33.33px;
+            color: $color-dark;
+            margin-bottom: 30px;
+          }
+          .description {
+            font-family: $font-montserrat-regular;
+            font-size: 33.31px;
+            color: $color-aluminium;
+            line-height: 49px;
+          }
+        }
+      }
+    }
+
+    .skills {
+      width: calc(100% - 1629px);
+      .pro-skills {
+        padding-top: 125px;
+        height: 50%;
+        background-color: $color-light-blue;
+        .header {
+          @include header(
+            $line-width: 339px,
+            $title-width: 284px,
+            $margin-left: 102px,
+            $margin-right: 94px,
+            $margin-bottom: 64px);
+        }
+      }
+      .per-skills {
+        padding-top: 125px;
+        height: 50%;
+        background-color: $color-maize-yellow;
+        .header {
+          @include header(
+            $line-width: 339px,
+            $title-width: 284px,
+            $margin-left: 102px,
+            $margin-right: 94px,
+            $margin-bottom: 64px);
+        }
+      }
+    }
+  }
+
+  /*
+    EDUCATION SECTION
+  */
+
+  .section-3 {
+
+  }
+
+  /*
+    REUSABLE CLASSES
+  */
+  
+  .skill {
+    width: 770px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 35px;
+    .skill-name {
+      font-size: 33.33px;
+      font-family: $font-montserrat-semibold;
+      width: 294px;
+      text-align: right;
+    }
+    .skill-percentage,
+    .actual {
+      width: 408px;
+      height: 26px;
+      border: 3px solid $color-dark;
+      border-radius: 10px;
+    }
+    .actual {
+      background-color: $color-dark;
+      position: relative;
+      top: -3px;
+      left: -1px;
     }
   }
 }
