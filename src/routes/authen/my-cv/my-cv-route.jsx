@@ -1,12 +1,12 @@
 import React, { Component } from 'react'
-import './my-cv.scss'
+import './my-cv-route.scss'
 import { PageLayout } from 'components/page-layout/page-layout'
 import { Button } from 'components/button/button'
 import { modals } from 'components/modals/modal-registry'
 import { ResumeEdit } from 'components/modals/resume-edit/resume-edit'
 import { Industries } from 'common/static-data'
 
-export class MyCV extends Component {
+export class MyCVRoute extends Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -46,6 +46,10 @@ export class MyCV extends Component {
         this.setState({ cv }, () => modals.close())
       }} />
     })
+  }
+
+  onCreateCV () {
+    
   }
 
   onCopyCV (item, idx) {

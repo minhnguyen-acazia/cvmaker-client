@@ -15,7 +15,7 @@ export class LoginRoute extends Component {
           <RegisterForm />
           <div style={{ clear: 'both' }} />
           <div className='no-time'>
-            No time to signup? <Button text='Create a resume without signing up' onClick={() => customHistory.push('/')} />
+            No time to signup? <Button className='button-authen' text='Create a resume without signing up' onClick={() => customHistory.push('/')} />
           </div>
         </div>
       )} />

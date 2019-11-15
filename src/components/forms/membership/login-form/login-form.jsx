@@ -36,7 +36,7 @@ export class LoginForm extends Component {
               <FormInput className='field' label='E-mail' inlineLabel maxLength='100' type='email' name='email' value={values.email} handleChange={handleChange} error={errors.email} />
               <FormInput className='field' label='Password' inlineLabel type='password' name='password' value={values.password} handleChange={handleChange} error={errors.password} />
               <div className='field'>
-                <Button text='Login' />
+                <Button className='button-authen' onClick={() => handleSubmit(values)} text='Login' />
               </div>
               <p className='forgot' onClick={() => customHistory.push('/forgot')}>
                 <small>Forgot your password?</small>

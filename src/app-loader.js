@@ -3,11 +3,11 @@ import { Router, Switch, Route } from 'react-router-dom'
 import { customHistory } from './common/history'
 import { ModalRegistry } from './components/modals/modal-registry'
 
-import { CreateCVGuest } from './routes/guest/create-cv-guest/create-cv-guest'
+import { HomeRoute } from './routes/guest/home/home-route'
 import { LoginRoute } from './routes/guest/login/login-route'
 import { ForgotPasswordRoute } from './routes/guest/forgot-password/forgot-password-route'
-import { MyCV } from './routes/authen/my-cv/my-cv'
-import { MyAccount } from './routes/authen/my-account/my-account'
+import { MyCVRoute } from './routes/authen/my-cv/my-cv-route'
+import { MyAccountRoute } from './routes/authen/my-account/my-account-route'
 
 import { ResumeExperience } from './components/resumes/resume-experience/resume-experience'
 import { ResumeSimpleAndClean } from './components/resumes/resume-simple-and-clean/resume-simple-and-clean'
@@ -19,11 +19,11 @@ export default class App extends Component {
       <>
         <Router history={customHistory}>
           <Switch>
-            <Route exact path='/' component={CreateCVGuest} />
+            <Route exact path='/' component={HomeRoute} />
             <Route path='/login' component={LoginRoute} />
             <Route path='/forgot' component={ForgotPasswordRoute} />
-            <Route path='/my-cv' component={MyCV} />
-            <Route path='/my-account' component={MyAccount} />
+            <Route exact path='/my-cv' component={MyCVRoute} />
+            <Route path='/my-account' component={MyAccountRoute} />
 
             <Route exact path='/resume-experience' component={ResumeExperience} />
             <Route exact path='/resume-simple-and-clean' component={ResumeSimpleAndClean} />

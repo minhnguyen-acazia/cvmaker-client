@@ -41,7 +41,7 @@ export const RegisterForm = () => {
             <FormInput className='field' label='Password' inlineLabel type='password' name='password' value={values.password} handleChange={handleChange} error={errors.password} />
             <FormInput className='field' label='Confirm password' inlineLabel type='password' name='confirmPassword' value={values.confirmPassword} handleChange={handleChange} error={errors.confirmPassword} />
             <div className='field'>
-              <Button text='Signup' onClick={() => handleSubmit(values)} />
+              <Button className='button-authen' text='Signup' onClick={() => handleSubmit(values)} />
             </div>
           </>
         )}

@@ -33,7 +33,7 @@ export class Button extends Component {
   render() {
     const { text, className, onClick } = this.props
     return (
-      <div className={classnames('button', className)} onClick={onClick}>
+      <div className={classnames('button', className ? className : '')} onClick={onClick}>
         {this.getIcon()}
         <span>{text}</span>
       </div>

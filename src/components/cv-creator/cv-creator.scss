@@ -1,0 +1,77 @@
+@import '../../assets/styles/colors';
+
+.cv-creator {
+  width: 1000px;
+  margin: 65px auto 30px;
+
+  .notice {
+    background: $color-yellow-buff;
+    padding: 5px;
+    margin: 0 0 25px 0;
+    border: 1px solid $color-yellow-sandy;
+    font-size: 11px;
+  }
+
+  .controls {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 15px;
+
+    .button {
+      margin-left: 3px;
+      &:first-of-type {
+        margin-right: 20px;
+      }
+    }
+  }
+
+  .main-form {
+    display: flex;
+
+    .options {
+      width: 25%;
+
+      .sortable-options {
+        border-top: 1px solid #d7d7d7;
+
+        .option {
+          background: $color-white url(../../assets/images/bg_button.png) repeat-x bottom left;
+          display: block;
+          padding: 6px 0 6px 8px;
+          overflow: hidden;
+          font-weight: bold;
+          font-size: 12px;
+          color: #666;
+          border-width: 0 0 1px 1px;
+          border-style: solid;
+          border-color: #d7d7d7;
+          cursor: move;
+
+          &:hover {
+            color: $color-blue-torquoise-bright;
+          }
+
+          &.selected {
+            background: none;
+            color: $color-white;
+            background-color: $color-blue-torquoise;
+            border-width: 0 1px 0 1px;
+            border-style: solid;
+            border-color: $color-blue-teal;
+          }
+        }
+      }
+
+      .add {
+        margin: 20px 0 13px;
+      }
+
+      .msg {
+        margin-top: 20px;
+        margin-right: 10px;
+        font-size: 11px;
+        color: #888;
+      }
+    }
+  }
+}

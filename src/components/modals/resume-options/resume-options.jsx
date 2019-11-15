@@ -12,6 +12,7 @@ import PreviewMinimalAndClean from  '../../../assets/images/preview-minimal-and-
 import PreviewSimpleAndClean from '../../../assets/images/preview-simple-and-clean.png'
 // Resume components
 import { ResumeExperience } from '../../resumes/resume-experience/resume-experience'
+import { ResumeSimpleAndClean } from '../../resumes/resume-simple-and-clean/resume-simple-and-clean'
 
 export class ResumeOptions extends React.Component {
   state = {
@@ -37,7 +38,7 @@ export class ResumeOptions extends React.Component {
       {
         name: 'Simple and Clean',
         img: PreviewSimpleAndClean,
-        component: <></>,
+        component: <ResumeSimpleAndClean data={this.props.forms} />,
         selected: false
       }
     ],

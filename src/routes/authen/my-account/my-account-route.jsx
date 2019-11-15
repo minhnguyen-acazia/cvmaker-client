@@ -1,6 +1,6 @@
 import React from 'react'
 import { Formik } from 'formik'
-import './my-account.scss'
+import './my-account-route.scss'
 import { PageLayout } from 'components/page-layout/page-layout'
 import { FormInput } from 'components/form-input/form-input'
 import { Button } from 'components/button/button'
@@ -20,7 +20,7 @@ const validate = (values) => {
   return errors
 }
 
-export function MyAccount() {
+export function MyAccountRoute() {
   return (
     <PageLayout authenticated content={(
       <div className='my-account'>

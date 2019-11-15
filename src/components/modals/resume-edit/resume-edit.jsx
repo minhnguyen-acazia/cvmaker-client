@@ -17,7 +17,7 @@ export class ResumeEdit extends Component {
 
   componentDidMount() {
     const { cvName, industry } = this.props
-    this.setState({ cvName, industry })
+    if (cvName && industry) this.setState({ cvName, industry })
   }
 
   handleChange(event) {
