@@ -1,6 +1,7 @@
 import React from 'react'
 import './resume-elegant-modern.scss'
 import avatar from '../../../assets/images/resume-elegant-modern/avatar.png'
+import { Icon } from 'components/icon/icon'
 
 export function ResumeElegantModern() {
   return (
@@ -104,19 +105,19 @@ export function ResumeElegantModern() {
             <div className='skill'>
               <div className='skill-name'>Illustator</div>
               <div className='skill-percentage'>
-              <div className='actual' style={{width: '50%'}} />
+                <div className='actual' style={{width: '50%'}} />
               </div>
             </div>
             <div className='skill'>
               <div className='skill-name'>Javascript</div>
               <div className='skill-percentage'>
-              <div className='actual' style={{width: '50%'}} />
+                <div className='actual' style={{width: '50%'}} />
               </div>
             </div>
             <div className='skill'>
               <div className='skill-name'>HTML / CSS</div>
               <div className='skill-percentage'>
-              <div className='actual' style={{width: '50%'}} />
+                <div className='actual' style={{width: '50%'}} />
               </div>
             </div>
           </div>
@@ -187,7 +188,62 @@ export function ResumeElegantModern() {
       </div>
 
       <div className='section-4'>
-
+        <div className='hobbies'>
+          <div className='header'>
+            <div className='header-title'>HOBBIES</div>
+            <div className='header-line'/>
+          </div>
+          <div className='hobbies-container'>
+            <div className='hobbie'>
+              <Icon type='camera' />
+              <span>Photography</span>
+            </div>
+            <div className='hobbie'>
+              <Icon type='music' />
+              <span>Music</span>
+            </div>
+            <div className='hobbie'>
+              <Icon type='football' />
+              <span>Football</span>
+            </div>
+            <div className='hobbie'>
+              <Icon type='bicycle' />
+              <span>Cycling</span>
+            </div>
+            <div className='hobbie'>
+              <Icon type='book' />
+              <span>Reading</span>
+            </div>
+            <div className='hobbie'>
+              <Icon type='gamepad' />
+              <span>Video Game</span>
+            </div>
+          </div>
+        </div>
+        <div className='languages'>
+          <div className='header'>
+            <div className='header-title'>LANGUAGE</div>
+            <div className='header-line'/>
+          </div>
+          <div className='skill'>
+            <div className='skill-name'>English</div>
+            <div className='skill-percentage'>
+              <div className='actual' style={{width: '50%'}} />
+            </div>
+          </div>
+          <div className='skill'>
+            <div className='skill-name'>Spanish</div>
+            <div className='skill-percentage'>
+              <div className='actual' style={{width: '50%'}} />
+            </div>
+          </div>
+          <div className='skill'>
+            <div className='skill-name'>French</div>
+            <div className='skill-percentage'>
+              <div className='actual' style={{width: '50%'}} />
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   )
