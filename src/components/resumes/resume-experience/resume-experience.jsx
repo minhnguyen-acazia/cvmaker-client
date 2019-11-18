@@ -11,7 +11,7 @@ export function ResumeExperience({ data: { basicInformation, workExperience, edu
 		<div className='resume-experience'>
 			<div className='left-column'>
 				<div className='image'>
-					<img src={avatar} alt='avatar' />
+					<img src={basicInformation.data.previewImage ? basicInformation.data.previewImage : avatar} alt='avatar' />
 				</div>
 				<div className='profile-name'>
 					<p className='name'>{basicInformation.data.fullName}</p>
@@ -85,8 +85,8 @@ export function ResumeExperience({ data: { basicInformation, workExperience, edu
 				<div className='education'>
 					<div className='header'>Education</div>
 					<div className='content'>
-						{education.data.map(n => (
-							<div className='section'>
+						{education.data.map((n, idx) => (
+							<div key={idx} className='section'>
 								<div className='section-header'>{n.courseName} {n.startDate}-{n.endDate}</div>
 								<div className='section-content'>
 									<p>{n.institutionName}</p>
@@ -113,8 +113,8 @@ export function ResumeExperience({ data: { basicInformation, workExperience, edu
 				<div className='experience'>
 					<div className='header'>Experience</div>
 					<div className='content'>
-						{workExperience.data.map(n =>(
-							<div className='section'>
+						{workExperience.data.map((n, idx) =>(
+							<div key={idx} className='section'>
 								<div className='section-header'>{n.jobTitle}</div>
 								<div className='section-content'>
 									<p>{n.companyName} {n.startDate}-{n.endDate}</p>

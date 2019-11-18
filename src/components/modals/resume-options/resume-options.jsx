@@ -60,9 +60,11 @@ export class ResumeOptions extends React.Component {
 
   onPreviewResume = () => {
     const { options } = this.state
-    modals.close()
+
     modals.open({
-      content: <PreviewResume children={options.find(n => n.selected).component} />
+      content: <PreviewResume
+        children={options.find(n => n.selected).component}
+      />
     })
   }
 
@@ -70,7 +72,9 @@ export class ResumeOptions extends React.Component {
     const { size } = this.state
     this.setState({ loading: true }, () => {
       const resume = document.querySelector('.mock-data').children[0]
-      html2canvas(resume).then(canvas => {
+      html2canvas(resume, {
+        allowTaint: true
+      }).then(canvas => {
         // create an image of the canvas
         const imgData = canvas.toDataURL('image/png')
         // create a pdf from that image and then download

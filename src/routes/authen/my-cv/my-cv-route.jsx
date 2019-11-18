@@ -5,6 +5,7 @@ import { Button } from 'components/button/button'
 import { modals } from 'components/modals/modal-registry'
 import { ResumeEdit } from 'components/modals/resume-edit/resume-edit'
 import { Industries } from 'common/static-data'
+import { customHistory } from 'common/history'
 
 export class MyCVRoute extends Component {
   constructor(props) {
@@ -73,9 +74,12 @@ export class MyCVRoute extends Component {
   renderRow(item, idx) {
     return (
       <div key={item.id} className='table-item'>
-        <div className='name'>
+        <div className='name' onClick={() => customHistory.push(`/my-cv/edit/${item.id}`)}>
           <span>{item.cvName}</span>
-          <div className='edit' onClick={() => this.onEditCV(item)}>
+          <div className='edit' onClick={e => {
+            e.stopPropagation()
+            this.onEditCV(item)
+          }}>
             {Industries.find(n => n.value === item.industry).label}
           </div>
         </div>

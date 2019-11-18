@@ -7,6 +7,7 @@ import { ResumeOptions } from 'components/modals/resume-options/resume-options'
 import { FormBasicInformation } from 'components/forms/form-basic-information'
 import { FormWorkExperience } from 'components/forms/form-work-experience'
 import { FormEducation } from 'components/forms/form-education'
+import { FormSkills } from 'components/forms/form-skills'
 
 export class CVCreator extends Component {
   state = {
@@ -35,6 +36,15 @@ export class CVCreator extends Component {
         selected: false,
         data: [{}]
       }
+    },
+    resumeType: ''
+  }
+
+  componentWillUnmount() {
+    const { forms: { basicInformation} } = this.state
+    if (basicInformation.data.previewImage) {
+      // Revoke data uris to avoid memory leaks
+      URL.revokeObjectURL(basicInformation.data.previewImage)
     }
   }
 
@@ -73,6 +83,20 @@ export class CVCreator extends Component {
     this.setState({ forms })
   }
 
+  handleImageUpload = (imageFile) => {
+    const { forms } = this.state
+
+    let previewImage = forms.basicInformation.data.previewImage
+    // Revoke data uris to avoid memory leaks
+    if (previewImage) URL.revokeObjectURL(previewImage)
+    // Create data uris for previewing
+    previewImage = URL.createObjectURL(imageFile)
+
+    forms.basicInformation.data.previewImage = previewImage
+    forms.basicInformation.data.image = imageFile
+    this.setState({ forms })
+  }
+
   renderSortableOptions = (forms) => {
     return (
       <ul className='sortable-options'>
@@ -91,6 +115,8 @@ export class CVCreator extends Component {
 
   renderForm = () => {
     let { forms } = this.state
+    const { authenticated } = this.props
+
     forms = Object.keys(forms)
       .map(type => forms[type])
       .filter(form => form.selected)
@@ -98,11 +124,13 @@ export class CVCreator extends Component {
 
     switch (id) {
       case 'basicInformation':
-        return <FormBasicInformation title={name} data={data} handleInputChange={this.handleInputChange} />
+        return <FormBasicInformation title={name} data={data} handleInputChange={this.handleInputChange} handleImageUpload={this.handleImageUpload} authenticated={authenticated} />
       case 'workExperience':
         return <FormWorkExperience title={name} data={data} handleInputChange={this.handleInputChange} addEntry={this.addEntry} deleteEntry={this.deleteEntry} />
       case 'education':
         return <FormEducation title={name} data={data} handleInputChange={this.handleInputChange} addEntry={this.addEntry} deleteEntry={this.deleteEntry} />
+      case 'skills':
+        return <FormSkills title={name} data={data} handleInputChange={this.handleInputChange} />
       default:
         return null
     }
@@ -111,7 +139,7 @@ export class CVCreator extends Component {
   render() {
     const { forms } = this.state
     const { authenticated } = this.props
-    // console.log(forms.education.data)
+    // console.log(forms.education.data))
 
     return (
       <div className='cv-creator'>

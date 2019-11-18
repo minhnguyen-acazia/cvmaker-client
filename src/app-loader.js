@@ -7,6 +7,7 @@ import { HomeRoute } from './routes/guest/home/home-route'
 import { LoginRoute } from './routes/guest/login/login-route'
 import { ForgotPasswordRoute } from './routes/guest/forgot-password/forgot-password-route'
 import { MyCVRoute } from './routes/authen/my-cv/my-cv-route'
+import { EditCVRoute } from './routes/authen/edit-cv/edit-cv-route'
 import { MyAccountRoute } from './routes/authen/my-account/my-account-route'
 
 import { ResumeExperience } from './components/resumes/resume-experience/resume-experience'
@@ -23,6 +24,7 @@ export default class App extends Component {
             <Route path='/login' component={LoginRoute} />
             <Route path='/forgot' component={ForgotPasswordRoute} />
             <Route exact path='/my-cv' component={MyCVRoute} />
+            <Route path='/my-cv/edit/:id' component={EditCVRoute} />
             <Route path='/my-account' component={MyAccountRoute} />
 
             <Route exact path='/resume-experience' component={ResumeExperience} />

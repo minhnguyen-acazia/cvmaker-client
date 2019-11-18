@@ -7,7 +7,9 @@ import { ModalBlueprint } from '../modal-blueprint/modal-blueprint'
 export function PreviewResume({ children }) {
   useEffect(() => {
     const resume = document.querySelector('.mock-data').children[0]
-    html2canvas(resume).then(canvas => {
+    html2canvas(resume, {
+      allowTaint: true
+    }).then(canvas => {
       // remove old element
       document.querySelector('.mock-data').remove()
       // create an image of the canvas
