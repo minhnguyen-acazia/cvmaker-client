@@ -8,6 +8,8 @@ import { FormBasicInformation } from 'components/forms/form-basic-information'
 import { FormWorkExperience } from 'components/forms/form-work-experience'
 import { FormEducation } from 'components/forms/form-education'
 import { FormSkills } from 'components/forms/form-skills'
+import { AddSkill } from 'components/modals/add-skill/add-skill'
+import { SkillCategories } from 'common/static-data'
 
 export class CVCreator extends Component {
   state = {
@@ -64,6 +66,24 @@ export class CVCreator extends Component {
     this.setState({ forms })
   }
 
+  addSkill = (skillCategoryId) => {
+    modals.open({
+      content: <AddSkill onConfirm={(skill) => {
+        const { forms: { skills } } = this.state
+        const data = skillCategoryId
+          ? skills.data.map(n => {
+            if (n.id === skillCategoryId) n.skills.push({ name: skill, value: '' })
+            return n
+          })
+          : [...skills.data, { name: skill, value: '' }]
+        this.setState({ forms: {
+          ...this.state.forms,
+          skills: { ...this.state.forms.skills, data }
+        }}, () => modals.close())
+      }} />
+    })
+  }
+
   handleInputChange = (e, type, idx) => {
     const { forms } = this.state
     const value = e.target.value
@@ -97,6 +117,28 @@ export class CVCreator extends Component {
     this.setState({ forms })
   }
 
+  onSelectResumeType = (resumeId) => {
+    // update skill categories after selecting a resume type
+    let skillCategories = SkillCategories[resumeId]
+    if (skillCategories.length > 0) {
+      skillCategories = skillCategories.map(n => ({
+        ...n,
+        skills: []
+      }))
+    }
+
+    this.setState({ 
+      resumeType: resumeId,
+      forms: {
+        ...this.state.forms,
+        skills: {
+          ...this.state.forms.skills,
+          data: skillCategories
+        }
+      }
+    })
+  }
+
   renderSortableOptions = (forms) => {
     return (
       <ul className='sortable-options'>
@@ -114,7 +156,7 @@ export class CVCreator extends Component {
   }
 
   renderForm = () => {
-    let { forms } = this.state
+    let { forms, resumeType } = this.state
     const { authenticated } = this.props
 
     forms = Object.keys(forms)
@@ -130,7 +172,7 @@ export class CVCreator extends Component {
       case 'education':
         return <FormEducation title={name} data={data} handleInputChange={this.handleInputChange} addEntry={this.addEntry} deleteEntry={this.deleteEntry} />
       case 'skills':
-        return <FormSkills title={name} data={data} handleInputChange={this.handleInputChange} />
+        return <FormSkills title={name} data={data} resumeType={resumeType} addSkill={this.addSkill} handleInputChange={this.handleInputChange} />
       default:
         return null
     }
@@ -139,7 +181,7 @@ export class CVCreator extends Component {
   render() {
     const { forms } = this.state
     const { authenticated } = this.props
-    // console.log(forms.education.data))
+    console.log('forms', forms)
 
     return (
       <div className='cv-creator'>
@@ -152,6 +194,7 @@ export class CVCreator extends Component {
           </p>
         )}
         <div className='controls'>
+          <Button text='Select a resume' onClick={() => modals.open({ content: <ResumeOptions forms={forms} select selectResumeType={this.onSelectResumeType} /> })} />
           <Button type='help' text='Help' />
           <Button type='preview' text='Quick preview' onClick={() => modals.open({ content: <ResumeOptions forms={forms} preview /> })} />
           <Button type='save' text='Save' />

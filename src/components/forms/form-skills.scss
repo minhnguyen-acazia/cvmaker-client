@@ -1,0 +1,10 @@
+.form-skills {
+  .form-input-field {
+    display: flex;
+    align-items: center;
+  }
+
+  .form-input-field + .button {
+    margin-top: 20px;
+  }
+}

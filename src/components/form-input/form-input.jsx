@@ -26,6 +26,15 @@ export function FormInput({ className, handleChange, type, label, inlineLabel, d
             ))}
           </select>
         )
+      // case 'skill':
+      //   return (
+      //     <div className='double-input-wrapper'>
+      //       <input id={id} className='form-input' type='text' onChange={handleChange} {...otherProps} />
+      //       <input className='form-input' type='number' min='1' max='100' onChange={handleChange} {...otherProps} />
+      //     </div>
+      //   )
+      case 'range':
+        return <input id={id} className='form-input-slider' type={type} onChange={handleChange} {...otherProps} />
       default:
         return <input id={id} className='form-input' type={type} onChange={handleChange} {...otherProps} />
     }

@@ -76,3 +76,31 @@ export const Industries = [
     label: 'Telecom'
   }
 ]
+
+export const ResumeTypes = {
+  ELEGANT_MODERN: 'elegantModern',
+  EXPERIENCE: 'experience',
+  MINIMAL_AND_CLEAN: 'minimalAndClean',
+  SIMPLE_AND_CLEAN: 'simpleAndClean'
+}
+
+export const SkillCategories = {
+  [ResumeTypes.EXPERIENCE]: [],
+  [ResumeTypes.ELEGANT_MODERN]: [{
+    id: 'proSkills',
+    name: 'Professional skills'
+  }, {
+    id: 'perSkills',
+    name: 'Personal skills'
+  }, {
+    id: 'languages',
+    name: 'Languages'
+  }],
+  [ResumeTypes.SIMPLE_AND_CLEAN]: [{
+    id: 'proSkills',
+    name: 'Professional skills'
+  }, {
+    id: 'perSkills',
+    name: 'Personal skills'
+  }]
+}

@@ -5,6 +5,7 @@ import './resume-options.scss'
 import { modals } from '../modal-registry'
 import { ModalBlueprint } from '../modal-blueprint/modal-blueprint'
 import { PreviewResume } from '../preview/preview-resume'
+import { ResumeTypes } from 'common/static-data'
 // Resume thumbnails
 import PreviewElegantModern from '../../../assets/images/preview-elegant-modern.png'
 import PreviewExperience from '../../../assets/images/preview-experience.png'
@@ -13,29 +14,34 @@ import PreviewSimpleAndClean from '../../../assets/images/preview-simple-and-cle
 // Resume components
 import { ResumeExperience } from '../../resumes/resume-experience/resume-experience'
 import { ResumeSimpleAndClean } from '../../resumes/resume-simple-and-clean/resume-simple-and-clean'
+import { ResumeElegantModern } from '../../resumes/resume-elegant-modern/resume-elegant-modern'
 
 export class ResumeOptions extends React.Component {
   state = {
     options: [
       {
+        id: ResumeTypes.ELEGANT_MODERN,
         name: 'Elegant Modern',
         img: PreviewElegantModern,
-        component: <></>,
+        component: <ResumeElegantModern data={this.props.forms} />,
         selected: false
       },
       {
+        id: ResumeTypes.EXPERIENCE,
         name: 'Experience',
         img: PreviewExperience,
         component: <ResumeExperience data={this.props.forms} />,
         selected: true
       },
       {
+        id: ResumeTypes.MINIMAL_AND_CLEAN,
         name: 'Minimal and Clean',
         img: PreviewMinimalAndClean,
         component: <></>,
         selected: false
       },
       {
+        id: ResumeTypes.SIMPLE_AND_CLEAN,
         name: 'Simple and Clean',
         img: PreviewSimpleAndClean,
         component: <ResumeSimpleAndClean data={this.props.forms} />,
@@ -56,6 +62,14 @@ export class ResumeOptions extends React.Component {
     })
 
     this.setState({ options })
+  }
+
+  onSelectResume = () => {
+    const { options } = this.state
+    const { selectResumeType } = this.props
+    const selectedOption = options.find(n => n.selected)
+    selectResumeType(selectedOption.id)
+    modals.close()
   }
 
   onPreviewResume = () => {
@@ -89,7 +103,7 @@ export class ResumeOptions extends React.Component {
 
   render() {
     const { options, type, size, loading } = this.state
-    const { preview, download } = this.props
+    const { preview, download, select } = this.props
 
     return (
       <>
@@ -97,11 +111,9 @@ export class ResumeOptions extends React.Component {
           {options.find(n => n.selected).component}
         </div>
         <ModalBlueprint className='resume-options' loading={loading} onConfirm={() => {
-          if (preview) {
-            this.onPreviewResume()
-          } else if (download) {
-            this.onDownloadResume()
-          }
+          if (preview) this.onPreviewResume()
+          if (download) this.onDownloadResume()
+          if (select) this.onSelectResume()
         }}>
           Style
           <div style={{clear: 'both'}} />
